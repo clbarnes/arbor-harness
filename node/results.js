@@ -14,7 +14,7 @@ function writeResult(path, obj) {
 }
 
 function main() {
-    for (let kv of fns.nameFnPairs.entries()) {
+  for (let kv of fns.nameFnPairs.entries()) {
     let key = kv[0];
     let nameFns = kv[1];
 
