@@ -5,6 +5,7 @@
   "main": "template.js",
   "dependencies": {
     "deepcopy": "^1.0.0",
+    "mkdirp": "^0.5.1",
     "perfy": "^1.1.5"
   },
   "devDependencies": {},

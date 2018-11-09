@@ -1,6 +1,12 @@
+"use strict";
+
+const fs = require('fs');
+const perfy = require('perfy');
+const mkdirp = require('mkdirp');
+
 const impl = require('./impl');
 const fns = require('./fns');
-const perfy = require('perfy');
+
 
 function writeBench(path, obj) {{
     fs.writeFileSync(path, JSON.stringify(obj, null, 2));
@@ -41,6 +47,8 @@ for (let kv of fns.nameFnPairs.entries()) {
     let nameFns = kv[1];
 
     let root = impl.RESULTS_PATH + '/' + key;
+    mkdirp.sync(root);
+
     for (let nameFn of nameFns) {
         console.log(`Benchmarking ${nameFn[0]}...`);
         let path = `${root}/${nameFn[0]}.bench.json`;

@@ -1,3 +1,5 @@
+"use strict";
+
 const deepcopy = require('deepcopy');
 
 const impl = require('./impl');
@@ -48,10 +50,10 @@ function findBranchAndEndNodes() {
     return arbor.findBranchAndEndNodes();
 }
 
-const outputs = deepcopy(realArborParser.outputs);
-const inputs = deepcopy(realArborParser.inputs);
-const n_outputs = deepcopy(realArborParser.n_outputs);
-const n_inputs = deepcopy(realArborParser.n_inputs);
+const outputs = deepcopy(arborParser.outputs);
+const inputs = deepcopy(arborParser.inputs);
+const n_outputs = deepcopy(arborParser.n_outputs);
+const n_inputs = deepcopy(arborParser.n_inputs);
 
 function flowCentrality() {
     return arbor.flowCentrality(outputs, inputs, n_outputs, n_inputs);
@@ -72,7 +74,7 @@ function partitionSorted() {
 // SYNAPSE CLUSTERING
 
 function synapseClustering() {
-    return impl.SynapseClustering(arbor, locations, synapseMap, impl.LAMBDA);
+    return new impl.SynapseClustering(arbor, locations, synapseMap, impl.LAMBDA);
 }
 
 const realSynapseClustering = synapseClustering();
@@ -102,9 +104,9 @@ function clusterSizes() {
 const clus = clusters();
 
 function segregationIndex() {
-    return realSynapseClustering(
+    return realSynapseClustering.segregationIndex(
         clus, outputs, inputs
-    )
+    );
 }
 
 const fcs = flowCentrality();

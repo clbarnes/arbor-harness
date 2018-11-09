@@ -1,3 +1,5 @@
+"use strict";
+
 const fs = require('fs');
 
 {arbor_js}
@@ -65,12 +67,3 @@ exports.FRACTION = FRACTION;
 exports.RESULTS_PATH = RESULTS_PATH;
 exports.REPS = REPS;
 exports.data = data;
-
-// module.exports = {
-//     "ArborParser": ArborParser,
-//     "Arbor": Arbor,
-//     "SynapseClustering": SynapseClustering,
-//     "LAMBDA": LAMBDA,
-//     "FRACTION": FRACTION,
-//     "RESULTS_PATH": RESULTS_PATH,
-// };

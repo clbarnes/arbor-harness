@@ -1,8 +1,6 @@
 import subprocess
 from argparse import ArgumentParser
 from pathlib import Path
-import sys
-import os
 
 from urllib.request import urlopen
 
@@ -34,12 +32,12 @@ template_path = PROJECT_ROOT / "template.js"
 skel_root = DATA_ROOT / str(TEST_SKELETON)
 arbor_path = skel_root / "compact-arbor.json"
 skeleton_path = skel_root / "compact-skeleton.json"
-results_path = skel_root / "results_path"
+results_path = skel_root / "results"
 
 template = template_path.read_text()
 
 
-def main(reps=None, force=False, results=True, bench=True):
+def main(reps=DEFAULT_REPS, force=False, results=True, bench=True):
     if not force and results_path.is_dir():
         return
 
@@ -61,20 +59,19 @@ def main(reps=None, force=False, results=True, bench=True):
         arbor_path=arbor_path,
         skeleton_path=skeleton_path,
     )
-    for path in [results_path, arbor_ref_path, parser_ref_path, clustering_ref_path]:
-        path.mkdir(exist_ok=True)
+    # for path in [results_path, arbor_ref_path, parser_ref_path, clustering_ref_path]:
+    #     path.mkdirs(exist_ok=True, parents=True)
 
     node_root = PROJECT_ROOT / "node"
-
     script_path = node_root / "impl.js"
 
     with open(script_path, "w") as f:
         f.write(s)
 
     if results:
-        subprocess.run(["node", node_root / "results.js"])
+        subprocess.run(["node", "--use_strict", str(node_root / "results.js")])
     if bench:
-        subprocess.run(["node", node_root / "bench.js"])
+        subprocess.run(["node", "--use_strict", str(node_root / "bench.js")])
 
 
 if __name__ == "__main__":
