@@ -1,0 +1,24 @@
+{
+  "name": "arbor-harness",
+  "version": "1.0.0",
+  "description": "Testing tool for arbor.js reimplementations",
+  "main": "template.js",
+  "dependencies": {
+    "deepcopy": "^1.0.0",
+    "perfy": "^1.1.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clbarnes/arbor-harness.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clbarnes/arbor-harness/issues"
+  },
+  "homepage": "https://github.com/clbarnes/arbor-harness#readme"
+}
