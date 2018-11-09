@@ -11,8 +11,8 @@ PROJECT_ROOT = HERE.parent
 DEFAULT_REPS = 100
 LAMBDA = 2000
 FRACTION = 0.9
-DATA_ROOT = PROJECT_ROOT / 'data'
-TEST_SKELETON = 3034133
+DATA_ROOT = PROJECT_ROOT / "data"
+TEST_SKELETON = 3_034_133
 
 BRANCH = "master"
 REPO_URL = f"https://raw.githubusercontent.com/catmaid/CATMAID/{BRANCH}"
@@ -77,10 +77,18 @@ def main(reps=DEFAULT_REPS, force=False, results=True, bench=True):
 
 if __name__ == "__main__":
     parser = ArgumentParser("get_reference")
-    parser.add_argument("-r", "--reps", type=int, default=DEFAULT_REPS, help="number of repeats for bechmarks")
+    parser.add_argument(
+        "-r",
+        "--reps",
+        type=int,
+        default=DEFAULT_REPS,
+        help=f"number of repeats for bechmarks (default {DEFAULT_REPS})",
+    )
     parser.add_argument("-f", "--force", action="store_true", help="Replace existing")
-    parser.add_argument('--no_results', action="store_true", help="do not calculate results")
-    parser.add_argument('--no_bench', action="store_true", help="do not benchmark")
+    parser.add_argument(
+        "--no_results", action="store_true", help="do not calculate results"
+    )
+    parser.add_argument("--no_bench", action="store_true", help="do not benchmark")
 
     parsed_args = parser.parse_args()
 
@@ -88,5 +96,5 @@ if __name__ == "__main__":
         parsed_args.reps,
         parsed_args.force,
         not parsed_args.no_results,
-        not parsed_args.no_bench
+        not parsed_args.no_bench,
     )
