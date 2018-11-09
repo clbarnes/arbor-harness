@@ -45,18 +45,22 @@ function bench(fn, reps) {
   };
 }
 
-for (let kv of fns.nameFnPairs.entries()) {
-  let key = kv[0];
-  let nameFns = kv[1];
+function main(reps = 100) {
+  for (let kv of fns.nameFnPairs.entries()) {
+    let key = kv[0];
+    let nameFns = kv[1];
 
-  let root = impl.RESULTS_PATH + "/" + key;
-  mkdirp.sync(root);
+    let root = impl.RESULTS_PATH + "/" + key;
+    mkdirp.sync(root);
 
-  for (let nameFn of nameFns) {
-    console.log(`Benchmarking ${nameFn[0]}...`);
-    let path = `${root}/${nameFn[0]}.bench.json`;
-    let result = bench(nameFn[1], impl.REPS);
+    for (let nameFn of nameFns) {
+      console.log(`Benchmarking ${nameFn[0]}...`);
+      let path = `${root}/${nameFn[0]}.bench.json`;
+      let result = bench(nameFn[1], reps);
 
-    writeBench(path, result);
+      writeBench(path, result);
+    }
   }
 }
+
+exports.main = main;

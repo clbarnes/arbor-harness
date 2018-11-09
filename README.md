@@ -1,8 +1,23 @@
 # arbor-harness
 
-Testing tool for arbor.js reimplementations
+Testing tool for 
+[Arbor.js](https://github.com/catmaid/CATMAID/blob/master/django/applications/catmaid/static/libs/catmaid/Arbor.js)
+and related tool reimplementations
 
-Python 3.7 (might work in older versions) + node.js 11
+Developed for node.js 11 (may work in earlier versions)
+
+## Concept
+
+- Fetch the existing implementation of Arbor.js, arbor_parser.js, and synapse_clustering.js
+- Run all of the important functions of each with test data included in this repo, storing their output for comparison
+- Benchmark each function
+
+## Output
+
+In `./data/<test skeleton>/results/` will be directories containing:
+
+- `*.results.json` (JSON-serialised results of each function call)
+- `*.bench.json` (benchmark results, keys are self-explanatory)
 
 ## Installation
 
@@ -14,13 +29,10 @@ npm install
 
 ## Usage
 
+```bash
+npm start
 ```
-usage: ./get_reference.py [-h] [-r REPS] [-f] [--no_results] [--no_bench]
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -r REPS, --reps REPS  number of repeats for bechmarks (default 100)
-  -f, --force           Replace existing
-  --no_results          do not calculate results
-  --no_bench            do not benchmark
-```
+If you want to change the behaviour of the script 
+(e.g. pull from a different branch, deactivate implementation fetching, results or benchmarks)
+edit the constants at the start of `./index.js`.

@@ -29,9 +29,9 @@ const synapseMap = createSynapseMap();
 
 // ARBOR
 
-const arbor = deepcopy(arborParser.arbor);
+const arbor = arborParser.arbor;
 
-const locations = deepcopy(arborParser.positions);
+const locations = arborParser.positions;
 
 const distanceFn = function(child, paren) {
   {

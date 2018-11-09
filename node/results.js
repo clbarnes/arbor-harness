@@ -13,17 +13,21 @@ function writeResult(path, obj) {
   }
 }
 
-for (let kv of fns.nameFnPairs.entries()) {
-  let key = kv[0];
-  let nameFns = kv[1];
+function main() {
+    for (let kv of fns.nameFnPairs.entries()) {
+    let key = kv[0];
+    let nameFns = kv[1];
 
-  let root = impl.RESULTS_PATH + "/" + key;
-  mkdirp.sync(root);
+    let root = impl.RESULTS_PATH + "/" + key;
+    mkdirp.sync(root);
 
-  for (let nameFn of nameFns) {
-    let path = `${root}/${nameFn[0]}.result.json`;
-    let result = nameFn[1]();
+    for (let nameFn of nameFns) {
+      let path = `${root}/${nameFn[0]}.result.json`;
+      let result = nameFn[1]();
 
-    writeResult(path, result);
+      writeResult(path, result);
+    }
   }
 }
+
+exports.main = main;
