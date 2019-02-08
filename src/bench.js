@@ -4,7 +4,12 @@ const fs = require("fs");
 const perfy = require("perfy");
 const mkdirp = require("mkdirp");
 
-const impl = require("./impl");
+let impl;
+try {
+  impl = require("./impl");
+} catch (e) {
+  throw new Error("Implementation has not been fetched")
+}
 const fns = require("./fns");
 
 function writeBench(path, obj) {
@@ -63,4 +68,4 @@ function main(reps = 100) {
   }
 }
 
-exports.main = main;
+module.exports = main;

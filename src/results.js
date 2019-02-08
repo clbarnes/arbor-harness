@@ -3,7 +3,12 @@
 const fs = require("fs");
 const mkdirp = require("mkdirp");
 
-const impl = require("./impl");
+let impl;
+try {
+  impl = require("./impl");
+} catch (e) {
+  throw new Error("Implementation has not been fetched")
+}
 const fns = require("./fns");
 
 function writeResult(path, obj) {
@@ -30,4 +35,4 @@ function main() {
   }
 }
 
-exports.main = main;
+module.exports = main;

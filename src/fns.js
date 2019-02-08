@@ -2,7 +2,12 @@
 
 const deepcopy = require("deepcopy");
 
-const impl = require("./impl");
+let impl;
+try {
+  impl = require("./impl");
+} catch (e) {
+  throw new Error("Implementation has not been fetched")
+}
 
 // ARBORPARSER
 
