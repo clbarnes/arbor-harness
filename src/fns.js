@@ -2,20 +2,24 @@
 
 const deepcopy = require("deepcopy");
 
-const defaults = require('./defaults');
-const Data = require('./data').Data;
+const defaults = require("./defaults");
+const Data = require("./data").Data;
 
 let impl;
 try {
   impl = require("./impl");
 } catch (e) {
-  throw new Error("Implementation has not been fetched")
+  throw new Error("Implementation has not been fetched");
 }
 
-function makeFns(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fraction = defaults.FRACTION) {
+function makeFns(
+  dataDir = defaults.DATA_DIR,
+  lambda = defaults.LAMBDA,
+  fraction = defaults.FRACTION
+) {
   const data = new Data(dataDir);
 
-// ARBORPARSER
+  // ARBORPARSER
 
   function fromCompactSkeleton() {
     const ap = new impl.ArborParser();
@@ -35,7 +39,7 @@ function makeFns(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fraction
 
   const synapseMap = createSynapseMap();
 
-// ARBOR
+  // ARBOR
 
   const arbor = arborParser.arbor;
 
@@ -84,7 +88,7 @@ function makeFns(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fraction
     return arbor.partitionSorted();
   }
 
-// SYNAPSE CLUSTERING
+  // SYNAPSE CLUSTERING
 
   function synapseClustering() {
     return new impl.SynapseClustering(arbor, locations, synapseMap, lambda);
@@ -146,7 +150,12 @@ function makeFns(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fraction
   const above = deepcopy(regions.above);
 
   function findAxonCut() {
-    return realSynapseClustering.findAxonCut(arbor, outputSet, above, locations);
+    return realSynapseClustering.findAxonCut(
+      arbor,
+      outputSet,
+      above,
+      locations
+    );
   }
 
   return new Map([

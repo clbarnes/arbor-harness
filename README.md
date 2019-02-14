@@ -1,6 +1,6 @@
 # arbor-harness
 
-Testing tool for 
+Testing tool for
 [Arbor.js](https://github.com/catmaid/CATMAID/blob/master/django/applications/catmaid/static/libs/catmaid/Arbor.js)
 and related tool reimplementations
 

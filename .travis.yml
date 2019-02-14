@@ -8,10 +8,10 @@ node_js:
 matrix:
   fast_finish: true
   allow_failures:
-  - env: $TRAVIS_NODE_VERSION=10
-  - env: $TRAVIS_NODE_VERSION=9
-  - env: $TRAVIS_NODE_VERSION=8
-  - env: $TRAVIS_NODE_VERSION=7
+    - env: $TRAVIS_NODE_VERSION=10
+    - env: $TRAVIS_NODE_VERSION=9
+    - env: $TRAVIS_NODE_VERSION=8
+    - env: $TRAVIS_NODE_VERSION=7
 install: npm install
 script:
   - arbor-harness data impl results bench -r catmaid/CATMAID -b dev -t ./refImpl.js -d ./copiedData -l 1999 -f 0.89 -o ./newResults -n 10

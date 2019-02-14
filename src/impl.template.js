@@ -3,18 +3,30 @@
 */
 "use strict";
 
-const THREE = require('three');
+const THREE = require("three");
 
 const $ = {};
 $.extend = require("jquery-extend");
 
-{{arborJs}}
+{
+  {
+    arborJs;
+  }
+}
 
-{{synapseClusteringJs}}
+{
+  {
+    synapseClusteringJs;
+  }
+}
 
 const CATMAID = {};
 
-{{arborParserJs}}
+{
+  {
+    arborParserJs;
+  }
+}
 
 module.exports.ArborParser = CATMAID.ArborParser;
 module.exports.Arbor = Arbor;

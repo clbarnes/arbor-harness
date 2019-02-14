@@ -14,13 +14,16 @@
     "sync-request": "^6.0.0",
     "three": "^0.98.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "prettier": "^1.16.4"
+  },
   "scripts": {
+    "prettier": "prettier --write \"**/*.{js,md,scss,yaml,yml}\"",
     "start": "./src/index.js",
-    "cli": "./src/cli.js",
+    "cli": "./bin/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": "./src/cli.js",
+  "bin": "bin/cli.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/clbarnes/arbor-harness.git"

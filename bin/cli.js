@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 const argparse = require("argparse");
-const defaults = require('./defaults');
 
-const main = require('./index');
+const defaults = require("../src/defaults");
+const main = require("../src");
+
 VERSION = "1.0.0";
 
 const parser = new argparse.ArgumentParser({
@@ -12,7 +13,8 @@ const parser = new argparse.ArgumentParser({
 });
 
 parser.addArgument("tasks", {
-  help: 'Any subset of "data" (copy skeleton data to destination), ' +
+  help:
+    'Any subset of "data" (copy skeleton data to destination), ' +
     '"impl" (fetch reference implementation; must be done at least once), ' +
     '"results" (calculate results for reference implementation), ' +
     'and "bench" (benchmark reference implementation)',
@@ -20,28 +22,37 @@ parser.addArgument("tasks", {
   nargs: argparse.Const.ZERO_OR_MORE
 });
 parser.addArgument(["-r", "--repo"], {
-  help: "GitHub repository from which to fetch reference implementation", defaultValue: defaults.REPO
+  help: "GitHub repository from which to fetch reference implementation",
+  defaultValue: defaults.REPO
 });
 parser.addArgument(["-b", "--branch"], {
-  help: "Git branch of the reference implementation", defaultValue: defaults.BRANCH
+  help: "Git branch of the reference implementation",
+  defaultValue: defaults.BRANCH
 });
 parser.addArgument(["-t", "--tgtPath"], {
   help: "Additionally save the fetched implementation to a file"
 });
 parser.addArgument(["-d", "--dataDir"], {
-  help: "Directory containing compact-arbor.json and compact-skeleton.json. If empty, will use internal skeleton data"
+  help:
+    "Directory containing compact-arbor.json and compact-skeleton.json. " +
+    "If empty, will use internal skeleton data"
 });
 parser.addArgument(["-l", "--lambda"], {
-  help: "lambda value to use for synapse clustering", type: parseFloat, defaultValue: defaults.LAMBDA
+  help: "lambda value to use for synapse clustering",
+  type: parseFloat,
+  defaultValue: defaults.LAMBDA
 });
 parser.addArgument(["-f", "--fraction"], {
-  help: "fraction value to use for synapse clustering", type: parseFloat, defaultValue: defaults.FRACTION
+  help: "fraction value to use for synapse clustering",
+  type: parseFloat,
+  defaultValue: defaults.FRACTION
 });
 parser.addArgument(["-o", "--resultsDir"], {
   help: "Directory in which to save result and benchmark Outputs"
 });
 parser.addArgument(["-n", "--reps"], {
-  help: "Number of repetitions to use while benchmarking", defaultValue: defaults.REPS
+  help: "Number of repetitions to use while benchmarking",
+  defaultValue: defaults.REPS
 });
 
 const parsedArgs = parser.parseArgs();
@@ -55,4 +66,3 @@ main.main(
   parsedArgs.tasks.includes("bench"),
   parsedArgs
 );
-

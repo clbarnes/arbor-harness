@@ -2,17 +2,19 @@
 
 "use strict";
 
-const fs = require('fs');
-const path = require('path');
-const mkdirp = require('mkdirp').sync;
+const fs = require("fs");
+const path = require("path");
+const mkdirp = require("mkdirp").sync;
 
-const defaults = require('./defaults');
+const defaults = require("./defaults");
 
 function main(dumpData, getImpl, makeResults, makeBench, options) {
   options = options || {};
 
   if (!dumpData && !getImpl && !makeResults && !makeBench) {
-    console.log('No tasks given; select from "data", "impl", "results", and "bench"')
+    console.log(
+      'No tasks given; select from "data", "impl", "results", and "bench"'
+    );
   }
 
   if (dumpData) {
@@ -27,18 +29,29 @@ function main(dumpData, getImpl, makeResults, makeBench, options) {
   }
 
   if (getImpl) {
-    const fetchImpl = require('./fetchImpl');
+    const fetchImpl = require("./fetchImpl");
     fetchImpl.fetchImpl(options.repo, options.branch, options.tgtPath);
   }
 
   if (makeResults) {
-    const results = require('./results');
-    results.getResults(options.dataDir, options.lambda, options.fraction, options.resultsDir);
+    const results = require("./results");
+    results.getResults(
+      options.dataDir,
+      options.lambda,
+      options.fraction,
+      options.resultsDir
+    );
   }
 
   if (makeBench) {
-    const bench = require('./bench');
-    bench.getBenchmarks(options.dataDir, options.lambda, options.fraction, options.resultsDir, options.reps);
+    const bench = require("./bench");
+    bench.getBenchmarks(
+      options.dataDir,
+      options.lambda,
+      options.fraction,
+      options.resultsDir,
+      options.reps
+    );
   }
 }
 
