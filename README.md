@@ -27,7 +27,7 @@ npm link
 
 ## Usage
 
-```bash
+```
 usage: arbor-harness [-h] [-v] [-r REPO] [-b BRANCH] [-t TGTPATH] [-d DATADIR]
               [-l LAMBDA] [-f FRACTION] [-o RESULTSDIR] [-n REPS]
               [tasks [tasks ...]]

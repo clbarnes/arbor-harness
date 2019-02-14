@@ -1,6 +1,6 @@
 {
   "name": "arbor-harness",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Testing tool for arbor.js reimplementations",
   "main": "./src/index.js",
   "dependencies": {

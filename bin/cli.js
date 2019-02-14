@@ -4,10 +4,10 @@ const argparse = require("argparse");
 const defaults = require("../src/defaults");
 const main = require("../src");
 
-VERSION = "1.0.0";
+const {version} = require('../package.json');
 
 const parser = new argparse.ArgumentParser({
-  version: VERSION,
+  version: version,
   addHelp: true,
   description: "Tool to help test alternative Arbor.py implementations"
 });
