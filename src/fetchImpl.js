@@ -13,8 +13,8 @@ function getFile(url) {
   return response.getBody('utf8');
 }
 
-function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtDir = defaults.TGT_DIR) {
-  const repoUrl = `https://raw.githubusercontent.com/${repo}/tree/${branch}`;
+function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtPath) {
+  const repoUrl = `https://raw.githubusercontent.com/${repo}/${branch}`;
   const catmaidLibUrl = repoUrl + "/django/applications/catmaid/static/libs/catmaid";
 
   const arborUrl = catmaidLibUrl + "/Arbor.js";
@@ -27,13 +27,13 @@ function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtDir = defa
     arborParserJs: getFile(arborParserUrl)
   };
 
-  const src = fs.readFileSync(SRC_PATH);
-  const template = Handlebars.compile(src);
+  const src = fs.readFileSync(SRC_PATH, "utf8");
+  const template = Handlebars.compile(src, {noEscape: true});
   const result = template(context);
 
   fs.writeFileSync(TGT_PATH, result);
-  if (!!tgtDir) {
-    fs.writeFileSync(tgtDir, result);
+  if (!!tgtPath) {
+    fs.writeFileSync(tgtPath, result);
   }
 }
 

@@ -13,18 +13,18 @@ try {
 }
 
 function makeFns(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fraction = defaults.FRACTION) {
-  const data = Data(dataDir);
+  const data = new Data(dataDir);
 
 // ARBORPARSER
 
   function fromCompactSkeleton() {
     const ap = new impl.ArborParser();
-    return ap.init("compact-skeleton", data.compactSkeleton());
+    return ap.init("compact-skeleton", data.compactSkeleton);
   }
 
   function fromCompactArbor() {
     const ap = new impl.ArborParser();
-    return ap.init("compact-arbor", data.compactArbor());
+    return ap.init("compact-arbor", data.compactArbor);
   }
 
   const arborParser = fromCompactArbor();

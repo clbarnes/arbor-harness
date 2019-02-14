@@ -7,8 +7,8 @@ class Data {
     this._compactArborStr = null;
     this._compactSkeletonStr = null;
     if (!lazy) {
-      this.compactArbor();
-      this.compactSkeleton();
+      this.compactArbor;
+      this.compactSkeleton;
     }
   }
 

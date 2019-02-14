@@ -1,7 +1,9 @@
 "use strict";
 
 const THREE = require('three');
-const $ = require("jquery");
+
+const $ = {};
+$.extend = require("jquery-extend");
 
 {{arborJs}}
 

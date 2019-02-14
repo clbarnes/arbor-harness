@@ -6,7 +6,7 @@
   "dependencies": {
     "deepcopy": "^1.0.0",
     "handlebars": "^4.1.0",
-    "jquery": "^3.3.1",
+    "jquery-extend": "^2.0.3",
     "mkdirp": "^0.5.1",
     "perfy": "^1.1.5",
     "shell": "^0.5.0",
@@ -15,7 +15,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "./src/index.js",
+    "start": "src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

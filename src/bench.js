@@ -49,7 +49,7 @@ function getBenchmarks(
   dataRoot = defaults.DATA_DIR,
   lambda = defaults.LAMBDA,
   fraction = defaults.FRACTION,
-  tgtDir = defaults.TGT_DIR,
+  tgtDir = defaults.RESULTS_DIR,
   reps = defaults.REPS
 ) {
   for (let kv of makeFns(dataRoot, lambda, fraction).entries()) {

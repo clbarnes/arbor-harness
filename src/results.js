@@ -13,7 +13,7 @@ function writeResult(path, obj) {
   }
 }
 
-function getResults(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fraction = defaults.FRACTION, tgtDir = defaults.TGT_DIR) {
+function getResults(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fraction = defaults.FRACTION, tgtDir = defaults.RESULTS_DIR) {
   for (let kv of makeFns(dataDir, lambda, fraction).entries()) {
     let key = kv[0];
     let nameFns = kv[1];
