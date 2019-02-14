@@ -14,6 +14,6 @@ matrix:
     - env: $TRAVIS_NODE_VERSION=7
 install: npm install
 script:
-  - arbor-harness data impl results bench -r catmaid/CATMAID -b dev -t ./refImpl.js -d ./copiedData -l 1999 -f 0.89 -o ./newResults -n 10
+  - npm run cli -- data impl results bench -r catmaid/CATMAID -b dev -t ./refImpl.js -d ./copiedData -l 1999 -f 0.89 -o ./newResults -n 10
 notifications:
   email: false
