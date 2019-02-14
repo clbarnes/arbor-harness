@@ -29,6 +29,13 @@
     "type": "git",
     "url": "git+https://github.com/clbarnes/arbor-harness.git"
   },
+  "files": [
+    "/src",
+    "/data",
+    "/bin",
+    "/package-lock.json",
+    "!.gitignore"
+  ],
   "author": "Chris L. Barnes",
   "license": "MIT",
   "bugs": {

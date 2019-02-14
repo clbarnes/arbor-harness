@@ -180,3 +180,4 @@ venv.bak/
 .mypy_cache/
 
 /tmp
+/resu

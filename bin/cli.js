@@ -22,11 +22,11 @@ parser.addArgument("tasks", {
   nargs: argparse.Const.ZERO_OR_MORE
 });
 parser.addArgument(["-r", "--repo"], {
-  help: "GitHub repository from which to fetch reference implementation",
+  help: `GitHub repository from which to fetch reference implementation [${defaults.REPO}]`,
   defaultValue: defaults.REPO
 });
 parser.addArgument(["-b", "--branch"], {
-  help: "Git branch of the reference implementation",
+  help: `Git branch of the reference implementation [${defaults.BRANCH}]`,
   defaultValue: defaults.BRANCH
 });
 parser.addArgument(["-t", "--tgtPath"], {
@@ -38,20 +38,21 @@ parser.addArgument(["-d", "--dataDir"], {
     "If empty, will use internal skeleton data"
 });
 parser.addArgument(["-l", "--lambda"], {
-  help: "lambda value to use for synapse clustering",
+  help: `lambda value to use for synapse clustering [${defaults.LAMBDA}]`,
   type: parseFloat,
   defaultValue: defaults.LAMBDA
 });
 parser.addArgument(["-f", "--fraction"], {
-  help: "fraction value to use for synapse clustering",
+  help: `fraction value to use for synapse clustering [${defaults.FRACTION}]`,
   type: parseFloat,
   defaultValue: defaults.FRACTION
 });
 parser.addArgument(["-o", "--resultsDir"], {
-  help: "Directory in which to save result and benchmark Outputs"
+  help: `Directory in which to save result and benchmark Outputs [${defaults.RESULTS_DIR}]`,
+  defaultValue: defaults.RESULTS_DIR
 });
 parser.addArgument(["-n", "--reps"], {
-  help: "Number of repetitions to use while benchmarking",
+  help: `Number of repetitions to use while benchmarking [${defaults.REPS}]`,
   defaultValue: defaults.REPS
 });
 
