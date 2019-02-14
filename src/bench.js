@@ -49,14 +49,14 @@ function getBenchmarks(
   dataRoot = defaults.DATA_DIR,
   lambda = defaults.LAMBDA,
   fraction = defaults.FRACTION,
-  tgtDir = defaults.RESULTS_DIR,
+  resultsDir = defaults.RESULTS_DIR,
   reps = defaults.REPS
 ) {
   for (let kv of makeFns(dataRoot, lambda, fraction).entries()) {
     let key = kv[0];
     let nameFns = kv[1];
 
-    let root = tgtDir + "/" + key;
+    let root = resultsDir + "/" + key;
     mkdirp.sync(root);
 
     for (let nameFn of nameFns) {

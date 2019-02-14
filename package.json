@@ -2,8 +2,9 @@
   "name": "arbor-harness",
   "version": "1.0.0",
   "description": "Testing tool for arbor.js reimplementations",
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "dependencies": {
+    "argparse": "^1.0.10",
     "deepcopy": "^1.0.0",
     "handlebars": "^4.1.0",
     "jquery-extend": "^2.0.3",
@@ -15,15 +16,17 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "src/index.js",
+    "start": "./src/index.js",
+    "cli": "./src/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": "./src/cli.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/clbarnes/arbor-harness.git"
   },
   "author": "Chris L. Barnes",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/clbarnes/arbor-harness/issues"
   },

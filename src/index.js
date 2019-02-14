@@ -2,27 +2,48 @@
 
 "use strict";
 
-//////////////////////////////
-// CHANGE THESE IF YOU WANT //
-//////////////////////////////
+const fs = require('fs');
+const path = require('path');
+const mkdirp = require('mkdirp');
 
-const GET_IMPL = true;
-const RESULTS = true;
-const BENCH = true;
+const defaults = require('./defaults');
 
-//////////////////////////////
+function main(dumpData, getImpl, makeResults, makeBench, options) {
+  options = options || {};
 
-if (GET_IMPL) {
-  const fetchImpl = require('./fetchImpl');
-  fetchImpl.fetchImpl();
+  if (!dumpData && !getImpl && !makeResults && !makeBench) {
+    console.log('No tasks given; select from "data", "impl", "results", and "bench"')
+  }
+
+  if (dumpData) {
+    mkdirp(options.dataDir);
+
+    for (let fname of ["compact-arbor.json", "compact-skeleton.json"]) {
+      fs.copyFileSync(
+        path.join(defaults.DATA_DIR, fname),
+        path.join(options.dataDir, fname)
+      );
+    }
+  }
+
+  if (getImpl) {
+    const fetchImpl = require('./fetchImpl');
+    fetchImpl.fetchImpl(options.repo, options.branch, options.tgtPath);
+  }
+
+  if (makeResults) {
+    const results = require('./results');
+    results.getResults(options.dataDir, options.lambda, options.fraction, options.resultsDir);
+  }
+
+  if (makeBench) {
+    const bench = require('./bench');
+    bench.getBenchmarks(options.dataDir, options.lambda, options.fraction, options.resultsDir, options.reps);
+  }
 }
 
-if (RESULTS) {
-  const results = require('./results');
-  results.getResults();
-}
+module.exports.main = main;
 
-if (BENCH) {
-  const bench = require('./bench');
-  bench.getBenchmarks();
+if (require.main === module) {
+  main(true, true, true, true);
 }
