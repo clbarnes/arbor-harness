@@ -15,6 +15,7 @@ function getFile(url) {
 
 function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtPath) {
   const repoUrl = `https://raw.githubusercontent.com/${repo}/${branch}`;
+  const licenseUrl = repoUrl + '/LICENSE';
   const catmaidLibUrl = repoUrl + "/django/applications/catmaid/static/libs/catmaid";
 
   const arborUrl = catmaidLibUrl + "/Arbor.js";
@@ -24,7 +25,8 @@ function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtPath) {
   const context = {
     arborJs: getFile(arborUrl),
     synapseClusteringJs: getFile(synapseClusteringUrl),
-    arborParserJs: getFile(arborParserUrl)
+    arborParserJs: getFile(arborParserUrl),
+    license: getFile(licenseUrl)
   };
 
   const src = fs.readFileSync(SRC_PATH, "utf8");
