@@ -22,7 +22,9 @@ parser.addArgument("tasks", {
   nargs: argparse.Const.ZERO_OR_MORE
 });
 parser.addArgument(["-r", "--repo"], {
-  help: `GitHub repository from which to fetch reference implementation [${defaults.REPO}]`,
+  help: `GitHub repository from which to fetch reference implementation [${
+    defaults.REPO
+  }]`,
   defaultValue: defaults.REPO
 });
 parser.addArgument(["-b", "--branch"], {
@@ -48,7 +50,9 @@ parser.addArgument(["-f", "--fraction"], {
   defaultValue: defaults.FRACTION
 });
 parser.addArgument(["-o", "--resultsDir"], {
-  help: `Directory in which to save result and benchmark Outputs [${defaults.RESULTS_DIR}]`,
+  help: `Directory in which to save result and benchmark Outputs [${
+    defaults.RESULTS_DIR
+  }]`,
   defaultValue: defaults.RESULTS_DIR
 });
 parser.addArgument(["-n", "--reps"], {
