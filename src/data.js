@@ -2,10 +2,14 @@ const fs = require('fs');
 const path = require('path');
 
 class Data {
-  constructor(dataPath) {
+  constructor(dataPath, lazy) {
     this.dataPath = dataPath;
     this._compactArborStr = null;
     this._compactSkeletonStr = null;
+    if (!lazy) {
+      this.compactArbor();
+      this.compactSkeleton();
+    }
   }
 
   get compactArbor() {
@@ -23,4 +27,4 @@ class Data {
   }
 }
 
-module.exports = Data;
+module.exports.Data = Data;

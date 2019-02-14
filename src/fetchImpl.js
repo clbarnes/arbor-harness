@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const Handlebars = require('handlebars');
 
+const defaults = require('./defaults');
+
 const SRC_PATH = path.join(__dirname, 'impl.template.js');
 const TGT_PATH = path.join(__dirname, 'impl.js');
 
@@ -11,8 +13,8 @@ function getFile(url) {
   return response.getBody('utf8');
 }
 
-function fetchImpl(repo, branch) {
-  const repoUrl = `https://raw.githubusercontent.com/${repo}/${branch}`;
+function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtDir = defaults.TGT_DIR) {
+  const repoUrl = `https://raw.githubusercontent.com/${repo}/tree/${branch}`;
   const catmaidLibUrl = repoUrl + "/django/applications/catmaid/static/libs/catmaid";
 
   const arborUrl = catmaidLibUrl + "/Arbor.js";
@@ -30,6 +32,9 @@ function fetchImpl(repo, branch) {
   const result = template(context);
 
   fs.writeFileSync(TGT_PATH, result);
+  if (!!tgtDir) {
+    fs.writeFileSync(tgtDir, result);
+  }
 }
 
-module.exports = fetchImpl;
+module.exports.fetchImpl = fetchImpl;

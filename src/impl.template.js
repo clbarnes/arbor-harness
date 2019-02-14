@@ -3,7 +3,7 @@
 const THREE = require('three');
 const $ = require("jquery");
 
-{{aborJs}}
+{{arborJs}}
 
 {{synapseClusteringJs}}
 

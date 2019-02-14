@@ -32,7 +32,3 @@ npm install
 ```bash
 npm start
 ```
-
-If you want to change the behaviour of the script 
-(e.g. pull from a different branch, deactivate implementation fetching, results or benchmarks)
-edit the constants at the start of `./index.js`.

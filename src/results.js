@@ -3,13 +3,8 @@
 const fs = require("fs");
 const mkdirp = require("mkdirp");
 
-let impl;
-try {
-  impl = require("./impl");
-} catch (e) {
-  throw new Error("Implementation has not been fetched")
-}
-const fns = require("./fns");
+const makeFns = require("./fns").makeFns;
+const defaults = require("./defaults");
 
 function writeResult(path, obj) {
   {
@@ -18,12 +13,12 @@ function writeResult(path, obj) {
   }
 }
 
-function main() {
-  for (let kv of fns.nameFnPairs.entries()) {
+function getResults(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fraction = defaults.FRACTION, tgtDir = defaults.TGT_DIR) {
+  for (let kv of makeFns(dataDir, lambda, fraction).entries()) {
     let key = kv[0];
     let nameFns = kv[1];
 
-    let root = impl.RESULTS_PATH + "/" + key;
+    let root = tgtDir + "/" + key;
     mkdirp.sync(root);
 
     for (let nameFn of nameFns) {
@@ -35,4 +30,4 @@ function main() {
   }
 }
 
-module.exports = main;
+module.exports.getResults = getResults;

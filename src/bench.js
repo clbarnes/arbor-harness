@@ -4,13 +4,8 @@ const fs = require("fs");
 const perfy = require("perfy");
 const mkdirp = require("mkdirp");
 
-let impl;
-try {
-  impl = require("./impl");
-} catch (e) {
-  throw new Error("Implementation has not been fetched")
-}
-const fns = require("./fns");
+const defaults = require("./defaults");
+const makeFns = require("./fns").makeFns;
 
 function writeBench(path, obj) {
   {
@@ -50,12 +45,18 @@ function bench(fn, reps) {
   };
 }
 
-function main(reps = 100) {
-  for (let kv of fns.nameFnPairs.entries()) {
+function getBenchmarks(
+  dataRoot = defaults.DATA_DIR,
+  lambda = defaults.LAMBDA,
+  fraction = defaults.FRACTION,
+  tgtDir = defaults.TGT_DIR,
+  reps = defaults.REPS
+) {
+  for (let kv of makeFns(dataRoot, lambda, fraction).entries()) {
     let key = kv[0];
     let nameFns = kv[1];
 
-    let root = impl.RESULTS_PATH + "/" + key;
+    let root = tgtDir + "/" + key;
     mkdirp.sync(root);
 
     for (let nameFn of nameFns) {
@@ -68,4 +69,4 @@ function main(reps = 100) {
   }
 }
 
-module.exports = main;
+module.exports.getBenchmarks = getBenchmarks;
