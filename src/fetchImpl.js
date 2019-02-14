@@ -5,7 +5,7 @@ const Handlebars = require("handlebars");
 
 const defaults = require("./defaults");
 
-const SRC_PATH = path.join(__dirname, "impl.template.js");
+const SRC_PATH = path.join(__dirname, "impl.js.template");
 const TGT_PATH = path.join(__dirname, "impl.js");
 
 function getFile(url) {
