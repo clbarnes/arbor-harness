@@ -2,7 +2,7 @@
 
 const fs = require("fs");
 const perfy = require("perfy");
-const mkdirp = require("mkdirp");
+const mkdirp = require("mkdirp").sync;
 
 const defaults = require("./defaults");
 const makeFns = require("./fns").makeFns;
@@ -57,7 +57,7 @@ function getBenchmarks(
     let nameFns = kv[1];
 
     let root = resultsDir + "/" + key;
-    mkdirp.sync(root);
+    mkdirp(root);
 
     for (let nameFn of nameFns) {
       console.log(`Benchmarking ${nameFn[0]}...`);

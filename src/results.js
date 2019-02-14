@@ -1,7 +1,7 @@
 "use strict";
 
 const fs = require("fs");
-const mkdirp = require("mkdirp");
+const mkdirp = require("mkdirp").sync;
 
 const makeFns = require("./fns").makeFns;
 const defaults = require("./defaults");
@@ -19,7 +19,7 @@ function getResults(dataDir = defaults.DATA_DIR, lambda = defaults.LAMBDA, fract
     let nameFns = kv[1];
 
     let root = resultsDir + "/" + key;
-    mkdirp.sync(root);
+    mkdirp(root);
 
     for (let nameFn of nameFns) {
       let path = `${root}/${nameFn[0]}.result.json`;
