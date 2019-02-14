@@ -1,18 +1,28 @@
 language: node_js
 node_js:
-  - "node"
-  - "10"
-  - "9"
-  - "8"
+- node
+- '10'
+- '9'
+- '8'
 matrix:
   fast_finish: true
   allow_failures:
-    - env: $TRAVIS_NODE_VERSION=10
-    - env: $TRAVIS_NODE_VERSION=9
-    - env: $TRAVIS_NODE_VERSION=8
-    - env: $TRAVIS_NODE_VERSION=7
+  - env: "$TRAVIS_NODE_VERSION=10"
+  - env: "$TRAVIS_NODE_VERSION=9"
+  - env: "$TRAVIS_NODE_VERSION=8"
+  - env: "$TRAVIS_NODE_VERSION=7"
 install: npm install
 script:
-  - npm run cli -- data impl results bench -r catmaid/CATMAID -b dev -t ./tmp/refImpl.js -d ./tmp/copiedData -l 1999 -f 0.89 -o ./tmp/newResults -n 10
+- npm run cli -- data impl results bench -r catmaid/CATMAID -b dev -t ./tmp/refImpl.js
+  -d ./tmp/copiedData -l 1999 -f 0.89 -o ./tmp/newResults -n 10
 notifications:
   email: false
+deploy:
+  provider: npm
+  email: chrislloydbarnes@gmail.com
+  api_key:
+    secure: XCt9pIkOOMj9juA/ErMGt/Wr0bOamnfFqkBoWrlHHMErq0V+kF2NAi5dWcL31Bs9mMdefxs3vQf1t3wM28QA7cdhQqNe7SgcHPFCBFIBGB9PpyPbwRMZtQqJeXu9vw84PTdYV1dscQPTo1NNzdyiYaa5ltjBZ8Mo/yFJg2KwqgDDFCdcGIkYrDjEgkJ4Pj6N3LzpRJ4dhaaQOc9x57eFVRwWnnvg52XZgOmN2ultk3a5z09zkspbm4JJSlaZq384FWpBvfk65RrD3kKO1Tc6T/uSdUL6xQuf7njgqQ7Gn48KFP1ydam0dBmZvGqnUTJL3vT059GCx2zCzZLZz8F7eeory29W76AHZNTAfHmYWmWXfPuT0UHJFp+VP1Nxn52sE6rh5k/bfVpW9YsjcRcwtWSBsJMbiHZmUo4pW9/vWzJ07CmnHw0Eyc/OtcVwJCo3i+8wMSt7Guqq1an3OprGCVSY4YlUXR73Vni7a5EEEKo4YeQ1IQsWfRHv6JLF7NCGuDvD15uWe9J2IdQvMY2wLZE8X3P0vbnuvHtdZ3qq9MlsdY/xxzCzdGkH/yVsFnv0uRjTYwHm2Zb1POqtI/cidIpyN6yjezpXaFXXX6NrMzL2hVzZr+OE2OTqJ1gsLYw5QttrZssae2ccaiFH99hYXFatQV8zh5YTUxW07WMgtYw=
+  on:
+    branch: master
+    tags: true
+    repo: clbarnes/arbor-harness
