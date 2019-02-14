@@ -1,16 +1,17 @@
 language: node_js
 node_js:
 - node
+- '11'
 - '10'
 - '9'
 - '8'
 matrix:
   fast_finish: true
   allow_failures:
-  - env: "$TRAVIS_NODE_VERSION=10"
-  - env: "$TRAVIS_NODE_VERSION=9"
-  - env: "$TRAVIS_NODE_VERSION=8"
-  - env: "$TRAVIS_NODE_VERSION=7"
+  - env: TRAVIS_NODE_VERSION=10
+  - env: TRAVIS_NODE_VERSION=9
+  - env: TRAVIS_NODE_VERSION=8
+  - env: TRAVIS_NODE_VERSION=7
 install: npm install
 script:
 - npm run cli -- data impl results bench -r catmaid/CATMAID -b dev -t ./tmp/refImpl.js
@@ -26,3 +27,4 @@ deploy:
     branch: master
     tags: true
     repo: clbarnes/arbor-harness
+    node: '0.11'
