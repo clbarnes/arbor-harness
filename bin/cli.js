@@ -9,7 +9,7 @@ const {version} = require('../package.json');
 const parser = new argparse.ArgumentParser({
   version: version,
   addHelp: true,
-  description: "Tool to help test alternative Arbor.py implementations"
+  description: "Tool to help test alternative Arbor.js implementations"
 });
 
 parser.addArgument("tasks", {
@@ -58,6 +58,10 @@ parser.addArgument(["-o", "--resultsDir"], {
 parser.addArgument(["-n", "--reps"], {
   help: `Number of repetitions to use while benchmarking [${defaults.REPS}]`,
   defaultValue: defaults.REPS
+});
+parser.addArgument(["-p", "--prettify"], {
+  help: "Whether to run the fetched implementation through prettier",
+  action: "storeTrue"
 });
 
 const parsedArgs = parser.parseArgs();

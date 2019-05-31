@@ -30,7 +30,9 @@ function main(dumpData, getImpl, makeResults, makeBench, options) {
 
   if (getImpl) {
     const fetchImpl = require("./fetchImpl");
-    fetchImpl.fetchImpl(options.repo, options.branch, options.tgtPath);
+    fetchImpl.fetchImpl(
+      options.repo, options.branch, options.tgtPath, options.prettify
+    );
   }
 
   if (makeResults) {

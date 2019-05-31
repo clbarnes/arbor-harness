@@ -4,18 +4,17 @@
   "description": "Testing tool for arbor.js reimplementations",
   "main": "./src/index.js",
   "dependencies": {
+    "@babel/parser": "^7.4.5",
     "argparse": "^1.0.10",
     "deepcopy": "^1.0.0",
-    "handlebars": "^4.1.0",
+    "handlebars": "^4.1.2",
     "jquery-extend": "^2.0.3",
     "mkdirp": "^0.5.1",
     "perfy": "^1.1.5",
+    "prettier": "^1.16.4",
     "shell": "^0.5.0",
     "sync-request": "^6.0.0",
     "three": "^0.98.0"
-  },
-  "devDependencies": {
-    "prettier": "^1.16.4"
   },
   "scripts": {
     "prettier": "prettier --write \"**/*.{js,md,scss,yaml,yml}\"",

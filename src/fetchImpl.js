@@ -2,6 +2,7 @@ const request = require("sync-request");
 const fs = require("fs");
 const path = require("path");
 const Handlebars = require("handlebars");
+const prettier = require("prettier");
 
 const defaults = require("./defaults");
 
@@ -13,7 +14,7 @@ function getFile(url) {
   return response.getBody("utf8");
 }
 
-function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtPath) {
+function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtPath, prettify) {
   const repoUrl = `https://raw.githubusercontent.com/${repo}/${branch}`;
   const licenseUrl = repoUrl + "/LICENSE";
   const catmaidLibUrl =
@@ -32,7 +33,18 @@ function fetchImpl(repo = defaults.REPO, branch = defaults.BRANCH, tgtPath) {
 
   const src = fs.readFileSync(SRC_PATH, "utf8");
   const template = Handlebars.compile(src, { noEscape: true });
-  const result = template(context);
+  let result = template(context);
+  if (!!prettify) {
+    result = prettier.format(
+      result,
+      {
+        parser: "babel",
+        trailingComma: "all",
+        insertPragma: true,
+        endOfLine: "lf",
+      }
+    );
+  }
 
   fs.writeFileSync(TGT_PATH, result);
   if (!!tgtPath) {
